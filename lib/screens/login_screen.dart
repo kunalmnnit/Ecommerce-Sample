@@ -17,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
-
     return Scaffold(
       body: Builder(
         builder: (context) => Container(
@@ -122,11 +121,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10.0)),
                         color: Colors.deepOrange.shade800,
                         onPressed: () {
-                          if (_signIn(context, phone)) {
-                            codeSent
-                                ? AuthService().signInWithOTP(
-                                    smsCode, verificationId, context)
-                                : verifyPhone('+91$phone');
+                          if (codeSent) {
+                            if (smsCode.length != 6) {
+                              final snackbar = SnackBar(
+                                  content: Text('Invalid Code'),
+                                  backgroundColor: Colors.deepOrange[900]);
+                              Scaffold.of(context).showSnackBar(snackbar);
+                            } else {
+                              setState(() {
+                                loading = true;
+                              });
+                              AuthService()
+                                  .signInWithOTP(smsCode, verificationId);
+                            }
+                          } else {
+                            _signIn(context, phone);
                           }
                         },
                         child: Text(
@@ -158,13 +167,16 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.deepOrange[900],
       );
       Scaffold.of(context).showSnackBar(snackbar);
-      return false;
     } else {
+      setState(() {
+        loading = true;
+      });
+      verifyPhone('+91$phone');
       phoneController.text = '';
-      loading = true;
-      return true;
     }
   }
+
+  //TODO: To be moved to service/authservice
 
   Future<void> verifyPhone(phoneNo) async {
     final PhoneVerificationCompleted verified = (AuthCredential authResult) {

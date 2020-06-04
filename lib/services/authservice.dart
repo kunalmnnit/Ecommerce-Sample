@@ -1,36 +1,45 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class AuthService {
   FirebaseUser user;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  signOut() {
-    FirebaseAuth.instance.signOut();
+  Stream<FirebaseUser> get authstate {
+    return _auth.onAuthStateChanged;
   }
 
   signIn(AuthCredential authCreds) async {
     try {
-      AuthResult authResult =
-          await FirebaseAuth.instance.signInWithCredential(authCreds);
+      AuthResult authResult = await _auth.signInWithCredential(authCreds);
       this.user = authResult.user;
+      _registerUsertoDB();
+      return true;
     } catch (err) {
       print(err.toString());
+      return false;
     }
   }
 
-  signInWithOTP(smsCode, verId, context) {
+  signInWithOTP(smsCode, verId) {
     AuthCredential authCreds = PhoneAuthProvider.getCredential(
         verificationId: verId, smsCode: smsCode);
     this.user = signIn(authCreds);
-    _registerUsertoDB(context);
   }
 
-  _registerUsertoDB(context) async {
+  _registerUsertoDB() async {
     CollectionReference userRef = Firestore.instance.collection('users');
     userRef.document(user.uid).setData({
       'phone': user.phoneNumber,
     });
-    Navigator.pushReplacementNamed(context, 'main');
+  }
+
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
   }
 }

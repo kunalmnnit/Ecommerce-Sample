@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cart/services/authservice.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatefulWidget {
   final Function closeDrawer;
@@ -12,6 +14,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
+    final user = Provider.of<FirebaseUser>(context);
     return Container(
       color: Colors.white,
       width: mediaQuery.size.width * 0.60,
@@ -19,12 +22,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Column(
         children: <Widget>[
           Container(
+            constraints: BoxConstraints(
+                minHeight: mediaQuery.size.height * 0.2,
+                minWidth: mediaQuery.size.width * 0.6,
+                maxHeight: mediaQuery.size.height * 0.2,
+                maxWidth: mediaQuery.size.width * 0.6),
             color: Colors.deepOrange.shade400,
-            height: mediaQuery.size.height * 0.2,
-            child: Row(
+            child: Column(
               children: <Widget>[
                 SizedBox(
-                  width: 5,
+                  height: 10,
                 ),
                 CircleAvatar(
                   radius: 40,
@@ -32,31 +39,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       'https://w0.pngwave.com/png/639/452/computer-icons-avatar-user-profile-people-icon-png-clip-art.png'),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 15,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Kunal Sevkani',
-                      textWidthBasis: TextWidthBasis.parent,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      '+91-7976127003',
-                      overflow: TextOverflow.clip,
-                      maxLines: 2,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                )
+                Text(
+                  user.phoneNumber,
+                  textWidthBasis: TextWidthBasis.parent,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ),
@@ -120,7 +110,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             onTap: () {
               AuthService().signOut();
-              //Navigator.pushReplacementNamed(context, '/screens/login_screen');
             },
           ),
         ],
