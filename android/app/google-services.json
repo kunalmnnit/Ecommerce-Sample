@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "40944091021",
+    "firebase_url": "https://ecart-6a6b2.firebaseio.com",
+    "project_id": "ecart-6a6b2",
+    "storage_bucket": "ecart-6a6b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40944091021:android:fd32238e0f5446e72207c4",
+        "android_client_info": {
+          "package_name": "com.kunal.cart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40944091021-tvi09gvajs2ir8vnd89i9n69k4tufm52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kunal.cart",
+            "certificate_hash": "312c4ce8b883d30840d782818177ffdc00536293"
+          }
+        },
+        {
+          "client_id": "40944091021-hsh1rk1kv4p8euo9ralqa33q584phnbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdS0iCEyE0qoN3YhGbPBEoe-pB26ppB3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40944091021-hsh1rk1kv4p8euo9ralqa33q584phnbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
