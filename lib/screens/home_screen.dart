@@ -1,40 +1,62 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cart/components/category_list_view.dart';
+import 'package:cart/components/offer_carousel.dart';
 import 'package:flutter/material.dart';
 
-final List<String> imgList = [
-  'https://www.earticleblog.com/wp-content/uploads/2016/08/airtel-hanset-special-offers.png',
-  'https://cdn.grabon.in/gograbon/images/web-images/uploads/1563948052223/Friendship-day-offers.jpg',
-  'https://www.sutexbank.in/upload/services/Special_offers.jpg',
-  'https://nurserylive.com/images/stories/virtuemart/category/nurserylive-offers.png'
-];
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
-class HomeScreen extends StatelessWidget {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    MediaQueryData mediaQuery = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Ecommerce'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            onPressed: () => print('Search pressed'),
+            splashColor: Colors.white10,
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+            ),
+            onPressed: () => print('Cart Pressed'),
+            splashColor: Colors.white10,
+          ),
+          SizedBox(
+            width: 10,
+          )
+        ],
       ),
       body: ListView(
         children: <Widget>[
-          CarouselSlider(
-            options: CarouselOptions(
-              height: mediaQuery.size.height * 0.3,
-              autoPlay: false,
-              aspectRatio: 16 / 9,
-              autoPlayAnimationDuration: Duration(microseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              scrollDirection: Axis.horizontal,
-            ),
-            items: imgList
-                .map((item) => Container(
-                      child: Card(
-                          child: Image.network(item,
-                              fit: BoxFit.cover, width: 1000)),
-                    ))
-                .toList(),
+          OffersCarousel(),
+          SizedBox(
+            height: 10,
           ),
+          Container(
+            constraints: BoxConstraints(
+                minWidth: 50, maxWidth: 50, minHeight: 30, maxHeight: 30),
+            child: Card(
+              color: Colors.deepOrange.shade300,
+              elevation: 10,
+              child: Center(
+                child: Text(
+                  'Categories',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          CategoryList(),
         ],
       ),
     );

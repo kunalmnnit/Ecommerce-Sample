@@ -1,3 +1,4 @@
+import 'package:cart/utilities/constanst.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cart/services/authservice.dart';
@@ -35,8 +36,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage(
-                      'https://w0.pngwave.com/png/639/452/computer-icons-avatar-user-profile-people-icon-png-clip-art.png'),
+                  backgroundImage: NetworkImage(url),
                 ),
                 SizedBox(
                   width: 15,
@@ -50,63 +50,68 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ],
             ),
           ),
-          ListTile(
-            leading: Icon(
-              Icons.home,
-              color: Colors.deepOrange.shade400,
+          InkWell(
+            splashColor: Colors.deepOrangeAccent,
+            child: ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.deepOrange.shade400,
+              ),
+              title: Text(
+                'Home',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+              ),
             ),
-            title: Text(
-              'Home',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-            ),
+            onTap: () => print('home'),
           ),
           SizedBox(
             height: 5,
           ),
-          ListTile(
-            leading: Icon(Icons.category, color: Colors.deepOrange.shade400),
-            title: Text(
-              'Categories',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+          InkWell(
+            splashColor: Colors.deepOrangeAccent,
+            child: ListTile(
+              leading: Icon(
+                Icons.local_offer,
+                color: Colors.deepOrange.shade400,
+              ),
+              title: Text(
+                'Offers',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+              ),
             ),
+            onTap: () => print('Offers'),
           ),
           SizedBox(
             height: 5,
           ),
-          ListTile(
-            leading: Icon(
-              Icons.local_offer,
-              color: Colors.deepOrange.shade400,
+          InkWell(
+            splashColor: Colors.deepOrangeAccent,
+            child: ListTile(
+              leading: Icon(
+                Icons.people,
+                color: Colors.deepOrange.shade400,
+              ),
+              title: Text(
+                'About Us',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+              ),
             ),
-            title: Text(
-              'Offers',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-            ),
+            onTap: () => print('About Us'),
           ),
           SizedBox(
             height: 5,
           ),
-          ListTile(
-            leading: Icon(
-              Icons.people,
-              color: Colors.deepOrange.shade400,
-            ),
-            title: Text(
-              'About Us',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.exit_to_app,
-              color: Colors.deepOrange.shade400,
-            ),
-            title: Text(
-              'Logout',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+          InkWell(
+            splashColor: Colors.deepOrangeAccent,
+            child: ListTile(
+              leading: Icon(
+                Icons.exit_to_app,
+                color: Colors.deepOrange.shade400,
+              ),
+              title: Text(
+                'Logout',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+              ),
             ),
             onTap: () {
               AuthService().signOut();

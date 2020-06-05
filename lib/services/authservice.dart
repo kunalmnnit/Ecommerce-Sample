@@ -13,11 +13,8 @@ class AuthService {
     try {
       AuthResult authResult = await _auth.signInWithCredential(authCreds);
       this.user = authResult.user;
-      _registerUsertoDB();
-      return true;
     } catch (err) {
       print(err.toString());
-      return false;
     }
   }
 
@@ -25,6 +22,7 @@ class AuthService {
     AuthCredential authCreds = PhoneAuthProvider.getCredential(
         verificationId: verId, smsCode: smsCode);
     this.user = signIn(authCreds);
+    _registerUsertoDB();
   }
 
   _registerUsertoDB() async {
