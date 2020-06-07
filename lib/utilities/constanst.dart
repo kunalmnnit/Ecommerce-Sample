@@ -7,7 +7,10 @@ const List<String> offersList = [
   'https://nurserylive.com/images/stories/virtuemart/category/nurserylive-offers.png'
 ];
 
-const laptop = 'assets/images/laptop.png';
-const mobiles = 'assets/images/mobile.png';
-const books = 'assets/images/books.png';
-const clothes = 'assets/images/clothes.png';
+const laptop = 'assets/images/categories/laptop.png';
+const mobiles = 'assets/images/categories/mobile.png';
+const books = 'assets/images/categories/books.png';
+const clothes = 'assets/images/categories/clothes.png';
+const blazer = 'assets/images/products/blazer1.jpeg';
+const dress = 'assets/images/products/dress1.jpeg';
+const blazer2 = 'assets/images/products/blazer2.jpeg';

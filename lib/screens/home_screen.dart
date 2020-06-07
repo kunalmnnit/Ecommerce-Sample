@@ -1,5 +1,6 @@
 import 'package:cart/components/category_list_view.dart';
 import 'package:cart/components/offer_carousel.dart';
+import 'package:cart/components/recent_products.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,6 +58,28 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           CategoryList(),
+          Container(
+            constraints: BoxConstraints(
+                minWidth: 50, maxWidth: 50, minHeight: 30, maxHeight: 30),
+            child: Card(
+              color: Colors.deepOrange.shade300,
+              elevation: 10,
+              child: Center(
+                child: Text(
+                  'Recent Products',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 320.0,
+            child: Products(),
+          ),
         ],
       ),
     );

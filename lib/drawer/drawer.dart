@@ -1,8 +1,7 @@
 import 'package:cart/utilities/constanst.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:cart/services/authservice.dart';
-import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatefulWidget {
   final Function closeDrawer;
@@ -15,7 +14,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
-    final user = Provider.of<FirebaseUser>(context);
     return Container(
       color: Colors.white,
       width: mediaQuery.size.width * 0.60,
@@ -38,14 +36,19 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   radius: 40,
                   backgroundImage: NetworkImage(url),
                 ),
-                SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  user.phoneNumber,
-                  textWidthBasis: TextWidthBasis.parent,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.white),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: FutureBuilder<String>(
+                      future: AuthService().getUserPhone(),
+                      builder: (BuildContext context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(snapshot.data,
+                              textWidthBasis: TextWidthBasis.parent,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(color: Colors.white));
+                        }
+                        return Text('');
+                      }),
                 ),
               ],
             ),
