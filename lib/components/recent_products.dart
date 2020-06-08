@@ -54,32 +54,36 @@ class SingleProduct extends StatelessWidget {
       {this.prodname, this.prodpicture, this.prodoldprice, this.prodprice});
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: Card(
-        child: Hero(
-            tag: prodname,
-            child: Material(
-              child: InkWell(
-                onTap: () {},
-                child: GridTile(
-                    footer: Container(
-                      color: Colors.white70,
-                      child: ListTile(
-                        leading: Text(
-                          prodname,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        title: Text('\$$prodprice'),
+    return Card(
+      child: Hero(
+          tag: prodname,
+          child: Material(
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, prodDetails, arguments: [
+                  prodname,
+                  prodpicture,
+                  prodoldprice,
+                  prodprice
+                ]);
+              },
+              child: GridTile(
+                  footer: Container(
+                    color: Colors.white70,
+                    child: ListTile(
+                      leading: Text(
+                        prodname,
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
+                      title: Text('\$$prodprice'),
                     ),
-                    child: Image.asset(
-                      prodpicture,
-                      fit: BoxFit.cover,
-                    )),
-              ),
-            )),
-      ),
+                  ),
+                  child: Image.asset(
+                    prodpicture,
+                    fit: BoxFit.cover,
+                  )),
+            ),
+          )),
     );
   }
 }

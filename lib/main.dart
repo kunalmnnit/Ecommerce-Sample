@@ -1,7 +1,7 @@
 import 'package:cart/drawer/drawer_wrapper.dart';
 import 'package:cart/screens/login_screen.dart';
 import 'package:cart/services/authservice.dart';
-
+import 'package:cart/utilities/router.dart' as router;
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +13,7 @@ void main() {
         primaryColor: Colors.deepOrangeAccent,
         accentColor: Colors.white,
         primaryColorDark: Colors.deepOrange.shade700),
+    onGenerateRoute: router.generateRoute,
     home: _handleWindowDisplay(),
   ));
 }

@@ -76,10 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 10,
           ),
-          Container(
-            height: 320.0,
-            child: Products(),
-          ),
+          Container(height: 320, child: Products()),
         ],
       ),
     );
