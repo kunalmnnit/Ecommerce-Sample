@@ -12,7 +12,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     List<dynamic> args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text(args[0].toString()),
+        title: Text('Ecommerce'),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -35,7 +35,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           )
         ],
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
           Container(
             height: mediaQuery.size.height * 0.5,
@@ -52,7 +52,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: ListTile(
                   leading: Text(
                     args[0],
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   title: Row(
                     children: <Widget>[
@@ -79,63 +79,144 @@ class _ProductDetailsState extends State<ProductDetails> {
           Row(
             children: <Widget>[
               Expanded(
+                  flex: 1,
                   child: MaterialButton(
-                onPressed: () {},
-                color: Colors.white,
-                textColor: Colors.grey,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(child: Text('Size')),
-                    Expanded(child: Icon(Icons.arrow_drop_down))
-                  ],
-                ),
-              )),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Size'),
+                            content: Text('Select'),
+                            actions: <Widget>[
+                              MaterialButton(
+                                onPressed: () {},
+                                child: Text(
+                                  'OK',
+                                ),
+                              ),
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  'Close',
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    color: Colors.white,
+                    textColor: Colors.grey,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(flex: 1, child: Text('Size')),
+                        Expanded(flex: 1, child: Icon(Icons.arrow_drop_down))
+                      ],
+                    ),
+                  )),
               Expanded(
+                  flex: 1,
                   child: MaterialButton(
-                onPressed: () {},
-                color: Colors.white,
-                textColor: Colors.grey,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(child: Text('Color')),
-                    Expanded(child: Icon(Icons.arrow_drop_down))
-                  ],
-                ),
-              )),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Color'),
+                            content: Text('Select'),
+                            actions: <Widget>[
+                              MaterialButton(
+                                onPressed: () {},
+                                child: Text(
+                                  'OK',
+                                ),
+                              ),
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  'Close',
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    color: Colors.white,
+                    textColor: Colors.grey,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(flex: 1, child: Text('Color')),
+                        Expanded(flex: 1, child: Icon(Icons.arrow_drop_down))
+                      ],
+                    ),
+                  )),
               Expanded(
+                  flex: 1,
                   child: MaterialButton(
-                onPressed: () {},
-                color: Colors.white,
-                textColor: Colors.grey,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(child: Text('Qty')),
-                    Expanded(child: Icon(Icons.arrow_drop_down))
-                  ],
-                ),
-              ))
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Quantity'),
+                            content: Text('Select'),
+                            actions: <Widget>[
+                              MaterialButton(
+                                onPressed: () {},
+                                child: Text(
+                                  'OK',
+                                ),
+                              ),
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  'Close',
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    color: Colors.white,
+                    textColor: Colors.grey,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(flex: 1, child: Text('Qty')),
+                        Expanded(flex: 1, child: Icon(Icons.arrow_drop_down))
+                      ],
+                    ),
+                  ))
             ],
+          ),
+          SizedBox(
+            height: mediaQuery.size.height * 0.22,
           ),
           Row(
             children: <Widget>[
               Expanded(
                   child: MaterialButton(
+                      height: 50,
+                      onPressed: () {},
+                      color: Colors.white,
+                      splashColor: Colors.deepOrange.shade300,
+                      textColor: Colors.deepOrange,
+                      child: Expanded(child: Text('Add to Cart')))),
+              Expanded(
+                  child: MaterialButton(
+                      height: 50,
                       onPressed: () {},
                       color: Colors.deepOrange,
                       textColor: Colors.white,
                       child: Expanded(child: Text('Buy Now')))),
-              IconButton(
-                  icon: Icon(
-                    Icons.add_shopping_cart,
-                    color: Colors.deepOrange.shade400,
-                  ),
-                  onPressed: () {}),
-              IconButton(
-                  icon: Icon(
-                    Icons.favorite_border,
-                    color: Colors.deepOrange.shade400,
-                  ),
-                  onPressed: () {}),
             ],
           ),
         ],
