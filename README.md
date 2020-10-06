@@ -1,6 +1,6 @@
 # cart
 
-A new Flutter project.
+A new Flutter project. It is a design implementation of Ecommerce App.
 
 ## Getting Started
 
